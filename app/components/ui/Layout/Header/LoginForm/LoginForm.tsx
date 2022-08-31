@@ -1,16 +1,17 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import Field from '@/ui/Field/Field'
+import DropDownWrapper from '@/ui/Layout/Header/DropDownWrapper/DropDownWrapper'
+import { validEmail } from '@/ui/Layout/Header/LoginForm/loginForm.constants'
 import { AuthField } from '@/ui/Layout/Header/LoginForm/loginForm.interface'
 
 import { useAuth } from '@/hooks/useAuth'
-import { useOutside } from '@/hooks/useOutside'
 
 import styles from './LoginForm.module.scss'
 
 const LoginForm = () => {
-	const { ref, setIsShow, isShow } = useOutside(false)
-
 	const [type, setType] = useState<'login' | 'register'>('login')
 
 	const {
@@ -33,7 +34,47 @@ const LoginForm = () => {
 			})
 	}
 
-	return <div>LoginForm</div>
+	return (
+		<DropDownWrapper
+			clickableElement={(toggleShow) => (
+				<button onClick={toggleShow} className={styles.buttonSignIn}>
+					<p>Вход</p>
+				</button>
+			)}
+		>
+			<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+				<Field
+					{...register('email', {
+						required: 'Поле является обязательным',
+						pattern: {
+							value: validEmail,
+							message: 'Введён некорректный email'
+						}
+					})}
+					placeholder="Email"
+					className={styles.input}
+					error={errors.email}
+				/>
+				<Field
+					{...register('password', {
+						required: 'Поле является обязательным',
+						minLength: {
+							value: 6,
+							message: 'Минимальная длина пароля 6 символов'
+						}
+					})}
+					placeholder="Пароль"
+					type="password"
+					className={styles.input}
+					error={errors.password}
+				/>
+				<button className={styles.buttonSignIn}>Войти</button>
+				<Link href={'/registration'}>
+					<p className={styles.grayLink}>Регистрация</p>
+				</Link>
+			</form>
+		</DropDownWrapper>
+	)
 }
 
 export default LoginForm
