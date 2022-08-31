@@ -6,14 +6,18 @@ import Meta from '@/utils/Meta/Meta'
 import { MetaProps } from '@/utils/Meta/meta.interface'
 
 import styles from './Layout.module.scss'
+import {useAuth} from "@/hooks/useAuth";
 
 const Layout: FC<PropsWithChildren<MetaProps>> = ({ children, ...meta }) => {
+
+	const {user} = useAuth()
+
 	return (
 		<>
 			<Meta {...meta} />
 			<div>
-				<Header />
-				<main className={styles.main}>{children}</main>
+				<Header user={user}/>
+				<main className={styles.main}>{user && children}</main>
 			</div>
 		</>
 	)
