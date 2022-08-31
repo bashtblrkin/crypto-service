@@ -1,7 +1,9 @@
 .header {
-	@apply flex-center-between border-0 border-b border-solid border-white p-4;
-
+	@apply flex-center-between border-0 border-b border-solid border-white px-10 py-4;
 	h1 {
-		@apply text-3xl text-black font-bold m-0;
+		@apply text-2xl text-black font-bold m-0;
+		span {
+			@apply text-primary;
+		}
 	}
 }
