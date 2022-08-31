@@ -5,6 +5,13 @@ import { User } from '@/shared/interfaces/user.interface'
 
 export const AuthContext = createContext({} as IAuthContext)
 
+/*{
+		id: 1,
+		name: 'Иван',
+		email: 'dasdsad',
+		avatarPath: ''
+	}*/
+
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [user, setUser] = useState<TypeUserState>(null)
 
