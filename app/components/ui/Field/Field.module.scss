@@ -1,2 +1,9 @@
-.field {}
-.error {}
+.field {
+  @apply mb-3;
+  input {
+    @apply w-full;
+  }
+}
+.error {
+  @apply font-regularUbuntu text-red-600;
+}
