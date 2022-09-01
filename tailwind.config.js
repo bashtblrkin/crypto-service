@@ -75,6 +75,21 @@ module.exports = {
 					'&:focus': {
 						boxShadow: '0 4px 6px -1px rgba(95, 61, 247, 0.4)'
 					}
+				},
+				'.shadow-icon': {
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					padding: '8px',
+					width: '40px',
+					height: '40px',
+					backgroundColor: 'white',
+					borderRadius: '50%',
+					boxShadow: '0 4px 6px -1px rgba(95, 61, 247, 0.2)',
+					'&:hover': {
+						cursor: 'pointer',
+						boxShadow: '0 4px 6px -1px rgba(95, 61, 247, 0.4)'
+					}
 				}
 			})
 			addUtilities({
