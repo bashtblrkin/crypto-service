@@ -1,1 +1,4 @@
-export interface AuthField {}
+export interface AuthField {
+    email: string
+    password: string
+}

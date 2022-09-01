@@ -1,0 +1,18 @@
+.nav {
+	@apply absolute right-0 bg-white py-3 px-2 rounded shadow-xl shadow-blueShadow/10;
+	ul {
+		@apply w-full;
+	}
+	li {
+		@apply flex items-center font-regularUbuntu mb-2 text-sm items-center text-gray-500 transition-colors duration-100 whitespace-nowrap;
+		svg {
+			@apply mr-2 inline-block;
+		}
+		&:hover {
+			@apply cursor-pointer text-gray-800;
+		}
+		&:last-child {
+			@apply mb-0;
+		}
+	}
+}

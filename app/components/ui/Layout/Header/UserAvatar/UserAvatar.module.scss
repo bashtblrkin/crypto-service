@@ -1,0 +1,6 @@
+.img {
+	@apply w-[40px] h-[40px];
+	&:hover {
+		@apply cursor-pointer;
+	}
+}
