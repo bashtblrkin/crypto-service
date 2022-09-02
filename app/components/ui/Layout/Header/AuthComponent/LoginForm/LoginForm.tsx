@@ -1,47 +1,47 @@
-import Link from 'next/link'
-import React, { useState } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+
+import React, {FC} from 'react'
+import {SubmitHandler, useForm} from 'react-hook-form'
 
 import Field from '@/ui/Field/Field'
-import DropDownWrapper from '@/ui/Layout/Header/DropDownWrapper/DropDownWrapper'
-import { validEmail } from '@/ui/Layout/Header/LoginForm/loginForm.constants'
-import { AuthField } from '@/ui/Layout/Header/LoginForm/loginForm.interface'
+import {validEmail} from '@/ui/Layout/Header/AuthComponent/LoginForm/loginForm.constants'
+import {AuthField} from '@/ui/Layout/Header/AuthComponent/LoginForm/loginForm.interface'
 
-import { useAuth } from '@/hooks/useAuth'
+import {useAuth} from '@/hooks/useAuth'
 
 import styles from './LoginForm.module.scss'
+import {useMutation} from "react-query";
+import {AuthService} from "@/services/auth/auth.service";
+import {AuthorizeForm} from "@/shared/interfaces/form.interface";
 
-const LoginForm = () => {
-	const [type, setType] = useState<'login' | 'register'>('login')
+const LoginForm: FC<AuthorizeForm> = ({onChangeTypeForm}) => {
 
 	const {
 		register,
 		formState: { errors },
-		handleSubmit
+		handleSubmit,
+		reset
 	} = useForm<AuthField>({
 		mode: 'onChange'
 	})
 
 	const { setUser } = useAuth()
 
+	const {mutate: loginSync} = useMutation(
+		['login'],
+		(data: AuthField) => AuthService.login(data.email, data.password),
+		{
+			onSuccess(data) {
+				setUser(data.user)
+				reset()
+			}
+		}
+	)
+
 	const onSubmit: SubmitHandler<AuthField> = (data) => {
-		if (type === 'login')
-			setUser({
-				id: 1,
-				name: 'Ivan',
-				avatarPath: '/avatar.png',
-				email: 'mymail@mail.ru'
-			})
+		loginSync(data)
 	}
 
 	return (
-		<DropDownWrapper
-			clickableElement={(toggleShow) => (
-				<button onClick={toggleShow} className={styles.buttonSignIn}>
-					<p>Вход</p>
-				</button>
-			)}
-		>
 			<form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
 				<Field
 					{...register('email', {
@@ -69,11 +69,8 @@ const LoginForm = () => {
 					error={errors.password}
 				/>
 				<button className={styles.buttonSignIn}>Войти</button>
-				<Link href={'/registration'}>
-					<p className={styles.grayLink}>Регистрация</p>
-				</Link>
+				<p className={styles.grayLink} onClick={() => {onChangeTypeForm('register')}}>Регистрация</p>
 			</form>
-		</DropDownWrapper>
 	)
 }
 
