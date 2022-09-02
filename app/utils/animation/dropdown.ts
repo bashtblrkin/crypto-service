@@ -1,4 +1,4 @@
-import {MotionProps, Variants} from 'framer-motion'
+import {Variants} from 'framer-motion'
 
 const duration = 0.3
 
