@@ -1,0 +1,18 @@
+.form {
+  @apply auth-form;
+}
+
+.input {
+  @apply default-input inline-block;
+}
+
+.grayLink {
+  @apply font-medium inline-block ml-3 text-xs;
+  &:hover {
+    @apply cursor-pointer text-gray-700;
+  }
+}
+
+.buttonSignIn {
+  @apply primary-btn;
+}
