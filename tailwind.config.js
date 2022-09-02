@@ -90,6 +90,15 @@ module.exports = {
 						cursor: 'pointer',
 						boxShadow: '0 4px 6px -1px rgba(95, 61, 247, 0.4)'
 					}
+				},
+				'.auth-form': {
+					position: 'absolute',
+					width: '300px',
+					padding: '1rem',
+					right: '0',
+					backgroundColor: 'white',
+					boxShadow: '0 20px 25px -5px rgba(95,93,251, 0.1)',
+					borderRadius: '0.5rem'
 				}
 			})
 			addUtilities({
