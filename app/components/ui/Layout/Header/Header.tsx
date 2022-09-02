@@ -1,12 +1,13 @@
-import React, { FC } from 'react'
-import { FiHelpCircle } from 'react-icons/fi'
-import { IoMdNotificationsOutline } from 'react-icons/io'
+import React, {FC} from 'react'
+import {FiHelpCircle} from 'react-icons/fi'
+import {IoMdNotificationsOutline} from 'react-icons/io'
 
-import LoginForm from '@/ui/Layout/Header/LoginForm/LoginForm'
+import LoginForm from '@/ui/Layout/Header/AuthComponent/LoginForm/LoginForm'
 import UserAvatar from '@/ui/Layout/Header/UserAvatar/UserAvatar'
-import { HeaderProps } from '@/ui/Layout/Header/header.interface'
+import {HeaderProps} from '@/ui/Layout/Header/header.interface'
 
 import styles from './Header.module.scss'
+import AuthComponent from "@/ui/Layout/Header/AuthComponent/AuthComponent";
 
 const Header: FC<HeaderProps> = ({ user }) => {
 	if (user) {
@@ -27,7 +28,7 @@ const Header: FC<HeaderProps> = ({ user }) => {
 			<h1 className={styles.h1}>
 				Crypto<span>BTR</span>
 			</h1>
-			<LoginForm />
+			<AuthComponent />
 		</header>
 	)
 }
